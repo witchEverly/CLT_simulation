@@ -2,41 +2,53 @@
 library(shiny)
 library(ggplot2)
 
+
 # UI components
 ui <- fluidPage(
   titlePanel("Central Limit Theorem Simulation App"),
   sidebarLayout(
     sidebarPanel(
-      numericInput(inputId = "sample_size", label = "Sample size:", value = 30, min = 1),
-      numericInput(inputId = "num_samples", label = "Number of samples:", value = 1000, min = 1),
+      numericInput(
+        inputId = "sample_size", label = "Sample size:", value = 30, min = 1),
+      numericInput(
+        inputId = "num_samples", label = "Number of samples:", value = 1000, min = 1),
 
       # Conditional Panels for Each Distribution
       conditionalPanel(
         condition = "input.tabs == 'Uniform'",
-        numericInput(inputId = "min", label = "x1", value = 0, min = 0, max = 1, step = 0.1),
-        numericInput(inputId = "max", label = "x2", value = 1, min = 0, max = 1, step = 0.1)
+        numericInput(
+          inputId = "min", label = "x1", value = 0, min = 0, max = 1, step = 0.1),
+        numericInput(
+          inputId = "max", label = "x2", value = 1, min = 0, max = 1, step = 0.1)
       ),
       conditionalPanel(
         condition = "input.tabs == 'Exponential'",
-        numericInput(inputId = "rate", label = "Parameter: Rate", value = 1, min = 0, step = 0.1)
+        numericInput(
+          inputId = "rate", label = "Parameter: Rate", value = 1, min = 0, step = 0.1)
       ),
       conditionalPanel(
         condition = "input.tabs == 'T-Distribution'",
-        numericInput(inputId = "df", label = "Degrees of Freedom", value = 10, min = 1, step = 1)
+        numericInput(
+          inputId = "df", label = "Degrees of Freedom", value = 10, min = 1, step = 1)
       ),
       conditionalPanel(
         condition = "input.tabs == 'F-Distribution'",
-        numericInput(inputId = "df1", label = "Numerator Degrees of Freedom", value = 10, min = 1, step = 1),
-        numericInput(inputId = "df2", label = "Denominator Degrees of Freedom", value = 10, min = 1, step = 1)
+        numericInput(
+          inputId = "df1", label = "Numerator Degrees of Freedom", value = 10, min = 1, step = 1),
+        numericInput(
+          inputId = "df2", label = "Denominator Degrees of Freedom", value = 10, min = 1, step = 1)
       ),
       conditionalPanel(
         condition = "input.tabs == 'Chi-Squared'",
-        numericInput(inputId = "df_chi", label = "Degrees of Freedom", value = 10, min = 1, step = 1)
+        numericInput(
+          inputId = "df_chi", label = "Degrees of Freedom", value = 10, min = 1, step = 1)
       ),
       conditionalPanel(
         condition = "input.tabs == 'Binomial'",
-        numericInput(inputId = "num_trials", label = "Parameter: Number of Trials", value = 10, min = 0),
-        numericInput(inputId = "prob", label = "Parameter: p", value = 0.5, min = 0, max = 1, step = 0.1)
+        numericInput(
+          inputId = "num_trials", label = "Parameter: Number of Trials", value = 10, min = 0),
+        numericInput(
+          inputId = "prob", label = "Parameter: p", value = 0.5, min = 0, max = 1, step = 0.1)
       ),
       actionButton(inputId = "go_button", label = "Generate")
     ),
@@ -54,6 +66,7 @@ ui <- fluidPage(
   )
 )
 
+
 # Server logic
 server <- function(input, output) {
   observeEvent(eventExpr = input$go_button, handlerExpr = {
@@ -65,7 +78,8 @@ server <- function(input, output) {
       )
 
       ggplot(data.frame(x = samples), aes(x = x)) +
-        geom_histogram(aes(y = after_stat(density)), bins = 30, fill = "#028A0F", alpha = 0.5) +
+        geom_histogram(
+          aes(y = after_stat(density)), bins = 30, fill = "#028A0F", alpha = 0.5) +
         geom_density(color = "blue") +
         theme_linedraw()
     })
@@ -78,7 +92,8 @@ server <- function(input, output) {
       )
 
       ggplot(data.frame(x = samples), aes(x = x)) +
-        geom_histogram(aes(y = after_stat(density)), bins = 30, fill = "#028A0F", alpha = 0.5) +
+        geom_histogram(
+          aes(y = after_stat(density)), bins = 30, fill = "#028A0F", alpha = 0.5) +
         geom_density(color = "blue") +
         theme_linedraw()
     })
@@ -91,7 +106,8 @@ server <- function(input, output) {
       )
 
       ggplot(data.frame(x = samples), aes(x = x)) +
-        geom_histogram(aes(y = after_stat(density)), bins = 30, fill = "#028A0F", alpha = 0.5) +
+        geom_histogram(
+          aes(y = after_stat(density)), bins = 30, fill = "#028A0F", alpha = 0.5) +
         geom_density(color = "blue") +
         theme_linedraw()
     })
@@ -104,7 +120,8 @@ server <- function(input, output) {
       )
 
       ggplot(data.frame(x = samples), aes(x = x)) +
-        geom_histogram(aes(y = after_stat(density)), bins = 30, fill = "#028A0F", alpha = 0.5) +
+        geom_histogram(aes(
+          y = after_stat(density)), bins = 30, fill = "#028A0F", alpha = 0.5) +
         geom_density(color = "blue") +
         theme_linedraw()
     })
@@ -117,7 +134,8 @@ server <- function(input, output) {
       )
 
       ggplot(data.frame(x = samples), aes(x = x)) +
-        geom_histogram(aes(y = after_stat(density)), bins = 20, fill = "#028A0F", alpha = 0.5) +
+        geom_histogram(
+          aes(y = after_stat(density)), bins = 20, fill = "#028A0F", alpha = 0.5) +
         geom_density(color = "blue") +
         theme_linedraw()
     })
@@ -130,13 +148,13 @@ server <- function(input, output) {
       )
 
       ggplot(data.frame(x = samples), aes(x = x)) +
-        geom_histogram(aes(y = after_stat(density)), bins = 20, fill = "#028A0F", alpha = 0.5) +
+        geom_histogram(
+          aes(y = after_stat(density)), bins = 20, fill = "#028A0F", alpha = 0.5) +
         geom_density(color = "blue") +
         theme_linedraw()
     })
   })
 }
-
 
 
 # Run the app

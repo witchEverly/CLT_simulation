@@ -4,6 +4,7 @@ library(ggplot2)
 
 # UI components
 ui <- fluidPage(
+  titlePanel("Central Limit Theorem Simulation App"),
   sidebarLayout(
     sidebarPanel(
       numericInput(inputId = "sample_size", label = "Sample size:", value = 30, min = 1),

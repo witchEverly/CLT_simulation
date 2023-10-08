@@ -6,22 +6,41 @@ library(ggplot2)
 # UI components
 ui <- fluidPage(
   titlePanel("Central Limit Theorem Simulation App"),
+  
   sidebarLayout(
     sidebarPanel(
       numericInput(
         inputId = "sample_size",
         label = "Sample size:",
         value = 30,
-        min = 1
+        min = 2,
+        max = 50000
       ),
       numericInput(
         inputId = "num_samples",
         label = "Number of samples:",
         value = 1000,
-        min = 1
+        min = 2,
+        max = 50000
+        
       ),
       
       # Conditional Panels for Each Distribution
+      conditionalPanel(
+        condition = "input.tabs == 'Normal'",
+        numericInput(inputId = "mean",
+                     label = "Mean:",
+                     value = 0, 
+                     step=0.1
+                     ),
+        
+        numericInput(inputId = "sd",
+                     label = "Standard Deviation:",
+                     value = 1,
+                     min = 1,
+                     step = 0.1
+      )
+    ),
       conditionalPanel(
         condition = "input.tabs == 'Uniform'",
         numericInput(
@@ -105,17 +124,37 @@ ui <- fluidPage(
           step = 0.1
         )
       ),
+      
+    
+      conditionalPanel(
+        condition = "input.tabs == 'Cauchy'",
+        numericInput(
+          inputId = "scale", 
+          label = "Parameter: scale", 
+          value = 1, 
+          step = 0.1),
+        numericInput(
+          inputId = "location", 
+          label = "Parameter: location", 
+          value = 0, 
+          step = 0.1
+        )
+      ),
+      
       actionButton(inputId = "go_button", label = "Generate")
     ),
+    
     mainPanel(
       tabsetPanel(
         id = "tabs",
+        tabPanel(title = "Normal", plotOutput(outputId = "normal_plot")),
         tabPanel(title = "Uniform", plotOutput(outputId = "uniform_plot")),
         tabPanel(title = "Exponential", plotOutput(outputId = "exponential_plot")),
         tabPanel(title = "T-Distribution", plotOutput(outputId = "t_plot")),
         tabPanel(title = "F-Distribution", plotOutput(outputId = "f_plot")),
         tabPanel(title = "Chi-Squared", plotOutput(outputId = "chi_squared_plot")),
-        tabPanel(title = "Binomial", plotOutput(outputId = "binomial_plot"))
+        tabPanel(title = "Binomial", plotOutput(outputId = "binomial_plot")),
+        tabPanel(title = "Cauchy", plotOutput(outputId = "cauchy_plot"))
       )
     )
   )
@@ -125,6 +164,27 @@ ui <- fluidPage(
 # Server logic
 server <- function(input, output) {
   observeEvent(eventExpr = input$go_button, handlerExpr = {
+    
+    # Normal distribution plot
+    output$normal_plot <- renderPlot({
+      samples <- replicate(n = input$num_samples,
+                           expr = mean(rnorm(
+                             n = input$sample_size,
+                             mean = input$mean,
+                             sd = input$sd
+                           )))
+      
+      ggplot(data.frame(x = samples), aes(x = x)) +
+        geom_histogram(
+          aes(y = after_stat(density)),
+          bins = 30,
+          fill = "#028A0F",
+          alpha = 0.5
+        ) +
+        geom_density(color = "blue") +
+        theme_linedraw()
+    })
+    
     # Generating Uniform Sample Data and Plot
     output$uniform_plot <- renderPlot({
       samples <- replicate(n = input$num_samples,
@@ -220,7 +280,7 @@ server <- function(input, output) {
         geom_density(color = "blue") +
         theme_linedraw()
     })
-    
+
     # Generating Binomial Sample Data and Plot
     output$binomial_plot <- renderPlot({
       samples <- replicate(n = input$num_samples,
@@ -241,10 +301,30 @@ server <- function(input, output) {
         ) +
         geom_density(color = "blue") +
         theme_linedraw()
-    })
-  })
+    }) 
+    
+    # Generating Cauchy Sample Data and Plot
+    output$cauchy_plot <- renderPlot({
+      samples <- replicate(n = input$num_samples, expr = mean(
+        rcauchy(
+          n = input$sample_size,
+          location = input$location,
+          scale =  input$scale
+        )
+      ))
+      
+      ggplot(data.frame(x = samples), aes(x = x)) +
+        geom_histogram(
+          aes(y = after_stat(density)),
+          bins = 20,
+          fill = "#028A0F",
+          alpha = 0.5
+        ) +
+        geom_density(color = "blue") +
+        theme_linedraw()
+    }) 
+  }) 
 }
 
-
-# Run the app
+# Now run the app
 shinyApp(ui = ui, server = server)

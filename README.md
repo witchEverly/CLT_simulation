@@ -43,7 +43,7 @@ the histogram plots contain the code to simulate the distributions and generate 
 
 # About the Project
 
-The first part of the project introduced the basic case: when the data are already normally distributed. In this context, the CLT is not needed, as the sample mean actually follows a normal distribution (this is an exact distribution, not an asymptotic one). To illustrate this, we generated 1000 sample means of normally distributed samples of size 1 (i.e., 1000 iid normally distributed random variables) and ploted the histogram of those values. We observed a bell-shape, characteristic of the normal distribution.
+The first part of the project introduced the basic case: when the data are already normally distributed. In this context, the CLT is not needed, as the sample mean actually follows a normal distribution (this is an exact distribution, not an asymptotic one). To illustrate this, we generated 1000 sample means from samples of size 1, all following a normal distribution (i.e., 1000 independent and identically distributed [iid] normally distributed random variables), and then we plotted a histogram of these sample means. We observed a bell-shape, characteristic of the normal distribution.
 
 ![alt text](https://github.com/witchEverly/CLT_simulation/blob/main/Normal_distribution.png?raw=true)
 

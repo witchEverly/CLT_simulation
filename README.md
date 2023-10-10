@@ -45,7 +45,7 @@ the histogram plots contain the code to simulate the distributions and generate 
 
 The first part of the project introduced the basic case: when the data are already normally distributed. In this context, the CLT is not needed, as the sample mean actually follows a normal distribution (this is an exact distribution, not an asymptotic one). To illustrate this, we generated 1000 sample means of normally distributed samples of size 1 (i.e., 1000 iid normally distributed random variables) and ploted the histogram of those values. We observed a bell-shape, characteristic of the normal distribution.
 
-![alt text](https://github.com/witchEverly/CLT_simulation/blob/main/Normal_distribution.jpg?raw=true)
+![alt text](https://github.com/witchEverly/CLT_simulation/blob/main/Normal_distribution.png?raw=true)
 
 We then went on to explore the importance of the CLT in Data Science:
 
@@ -61,7 +61,7 @@ Next, we discussed the practical applications of the Central Limit Theorem (CLT)
 
 We also focused on some edge-case where the CLT does not apply: the Cauchy distribution. Basically, this is because the assumption of a finite second-order-moment isn't satisfied for this distribution (it doesn't even have a finite expected-value, so the law of large numbers can't be used as well). We illustrated this using the app, showing that, no watter the sample size or the number of samples, the histogram of sample means as a whole will never get close enough to a bell-shape. This is because the Cauchy distribution will generate extremely big values (in absolute value) with high probability, and this will be reflected in the sample means, which will in turn prevent the distribution from converging to a normal distribution.
 
-![alt text](https://github.com/witchEverly/CLT_simulation/blob/main/Cauchy_distribution.jpg?raw=true)
+![alt text](https://github.com/witchEverly/CLT_simulation/blob/main/Cauchy_distribution.png?raw=true)
 
 [JESSICA'S PART]
 

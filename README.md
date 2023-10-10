@@ -41,11 +41,12 @@ The server is divided into two sections: the first section contains the code for
 the second section contains the code for the histogram plots. The server input contains the code for the user input, 
 the histogram plots contain the code to simulate the distributions and generate the histogram plots.
 
-# About the Project (or presentation ??)
+# About the Project
 
 The first part of the project introduced the basic case: when the data are already normally distributed. In this context, the CLT is not needed, as the sample mean actually follows a normal distribution (this is an exact distribution, not an asymptotic one). To illustrate this, we generated 1000 sample means of normally distributed samples of size 1 (i.e., 1000 iid normally distributed random variables) and ploted the histogram of those values. We observed a bell-shape, characteristic of the normal distribution.
 
 ![alt text](https://github.com/witchEverly/CLT_simulation/blob/main/Normal_distribution.png?raw=true)
+
 
 We then went on to explore the importance of the CLT in Data Science:
 
@@ -59,9 +60,17 @@ We then went on to explore the importance of the CLT in Data Science:
 
 Next, we discussed the practical applications of the Central Limit Theorem (CLT) in the context of quality control in a factory producing 100 million t-shirts annually. Highlighting the challenges of ensuring a defect rate of 1 in 1,000 in massive orders, and choosing the right sample size was emphasized. We also touched on the rule of thumb that for effective sampling, we need to see at least 5 of each side - defective and non-defective. The common assumption of a sample size of 30, based on the CLT, was reviewed using a binomial distribution, revealing that due to the extreme variance, it did not yield the expected bell curve. Then we concluded that, for these settings, a more appropriate sample size is 5,000 to accurately reflect the CLT and ensure product quality, emphasizing the importance of context and variance in determining sample sizes.
 
+![alt text](https://github.com/witchEverly/CLT_simulation/blob/main/sample_size.png?raw=true)
+
+![alt text](https://github.com/witchEverly/CLT_simulation/blob/main/rule_of_thumb.png?raw=true)
+
+
+
+
 We also focused on some edge-case where the CLT does not apply: the Cauchy distribution. Basically, this is because the assumption of a finite second-order-moment isn't satisfied for this distribution (it doesn't even have a finite expected-value, so the law of large numbers can't be used as well). We illustrated this using the app, showing that, no watter the sample size or the number of samples, the histogram of sample means as a whole will never get close enough to a bell-shape. This is because the Cauchy distribution will generate extremely big values (in absolute value) with high probability, and this will be reflected in the sample means, which will in turn prevent the distribution from converging to a normal distribution.
 
 ![alt text](https://github.com/witchEverly/CLT_simulation/blob/main/Cauchy_distribution.png?raw=true)
+
 
 [JESSICA'S PART]
 

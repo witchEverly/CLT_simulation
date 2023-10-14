@@ -1,7 +1,10 @@
+
+# CLT Simulation
+
 This repository was developed as part of a three-phase Communications assignment for a Master's in Data Science course. 
 To assist in the presentation, an application was developed using R Shiny.
 
-The application can be found at: <https://witcheverly.shinyapps.io/CLT_simulation/>
+**The application can be found at <https://witcheverly.shinyapps.io/CLT_simulation/>**
 
 ## About the Assignment
 
@@ -22,12 +25,10 @@ and the number of samples to be taken from each sample.
 
 For each distribution, the application allows the user to input the parameters that conditionally define each distribution.
 
-The application then generates a histogram of the sample means of the distribution. Overlaid on the histograms was planned to be a normal distribution; 
-however, due to time constraints and limitations, this was not implemented and a density plot was used instead.
-
+The application then generates a histogram of the sample means of the distribution. Overlaid on the histograms is a density plot.
 # About the Code 
 
-The code for the application is contained in the file `app.R`. The code is divided into two sections: User Interface and Server Input.
+The code for the application is contained in the file `app.R`. The code is divided into two sections: **User Interface and Server Input**.
 
 ### User Interface
 
@@ -39,7 +40,7 @@ the main panel contains the code for the histogram plots.
 
 The server is divided into two sections: the first section contains the code for server input, 
 the second section contains the code for the histogram plots. The server input contains the code for the user input, 
-the histogram plots contain the code to simulate the distributions and generate the histogram plots.
+the histogram plots contain the sample to simulate the distributions and generate the histogram plots.
 
 # About the Project
 
@@ -70,8 +71,4 @@ Next, we discussed the practical applications of the Central Limit Theorem (CLT)
 We also focused on some edge-case where the CLT does not apply: the Cauchy distribution. Basically, this is because the assumption of a finite second-order-moment isn't satisfied for this distribution (it doesn't even have a finite expected-value, so the law of large numbers can't be used as well). We illustrated this using the app, showing that, no watter the sample size or the number of samples, the histogram of sample means as a whole will never get close enough to a bell-shape. This is because the Cauchy distribution will generate extremely big values (in absolute value) with high probability, and this will be reflected in the sample means, which will in turn prevent the distribution from converging to a normal distribution.
 
 ![alt text](https://github.com/witchEverly/CLT_simulation/blob/main/Cauchy_distribution.png?raw=true)
-
-
-[JESSICA'S PART]
-
 

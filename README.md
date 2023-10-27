@@ -6,6 +6,7 @@ To assist in the presentation, an application was developed using R Shiny.
 
 **The application can be found at <https://witcheverly.shinyapps.io/CLT_simulation/>**
 
+
 ## About the Assignment
 
 > The first phase of the assignment required a brief 2-3 minute presentation focused on the Central Limit Theorem.
@@ -15,6 +16,12 @@ To assist in the presentation, an application was developed using R Shiny.
 > The final phase combined elements from the first two, featuring a 10-minute talk and a 5-minute Q&A session to delve deeper into an intriguing aspect of the topic.
 
 All parts of the project were presented to a live audience.
+
+## Table of Contents
+1. [About the Application](#About-the-Application)
+2. [About the Code](#About-the-Code)
+3. [About the Project](#About-the-Project)
+
 
 # About the Application
 
